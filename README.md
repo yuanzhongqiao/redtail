@@ -1,71 +1,87 @@
-# NVIDIA Redtail project
-
-Autonomous visual navigation components for drones and ground vehicles using deep learning. Refer to [wiki](https://github.com/NVIDIA-Jetson/redtail/wiki) for more information on how to get started.
-
-This project contains deep neural networks, computer vision and control code, hardware instructions and other artifacts that allow users to build a drone or a ground vehicle which can autonomously navigate through highly unstructured environments like forest trails, sidewalks, etc. Our TrailNet DNN for visual navigation is running on NVIDIA's Jetson embedded platform. Our [arXiv paper](https://arxiv.org/abs/1705.02550) describes TrailNet and other runtime modules in detail.
-
-The project's deep neural networks (DNNs) can be trained from scratch using publicly available data. A few [pre-trained DNNs](../master/models/pretrained/) are also available as a part of this project. In case you want to train TrailNet DNN from scratch, follow the steps on [this page](../../wiki/Models).
-
-The project also contains [Stereo DNN](../master/stereoDNN/) models and runtime which allow to estimate depth from stereo camera on NVIDIA platforms.
-
-**IROS 2018**: we presented our work at [IROS 2018](https://www.iros2018.org/) conference as a part of [Vision-based Drones: What's Next?](https://www.seas.upenn.edu/~loiannog/workshopIROS2018uav/) workshop.
-
-**CVPR 2018**: we presented our work at [CVPR 2018](http://cvpr2018.thecvf.com/) conference as a part of [Workshop on Autonomous Driving](http://www.wad.ai/index.html).
-
-## References and Demos
-* [Stereo DNN, CVPR18 paper](https://arxiv.org/abs/1803.09719), [Stereo DNN video demo](https://youtu.be/0FPQdVOYoAU)
-* [TrailNet Forest Drone Navigation, IROS17 paper](https://arxiv.org/abs/1705.02550), [TrailNet DNN video demo](https://youtu.be/H7Ym3DMSGms)
-* GTC 2017 talk: [slides](http://on-demand.gputechconf.com/gtc/2017/presentation/s7172-nikolai-smolyanskiy-autonomous-drone-navigation-with-deep-learning.pdf), [video](http://on-demand.gputechconf.com/gtc/2017/video/s7172-smolyanskiy-autonomous-drone-navigation-with-deep-learning%20(1).PNG.mp4)
-* [Demo video showing 250m autonomous flight with TrailNet DNN flying the drone](https://youtu.be/H7Ym3DMSGms)
-* [Demo video showing our 1 kilometer autonomous drone flight with TrailNet DNN](https://youtu.be/USYlt9t0lZY)
-* [Demo video showing TrailNet DNN driving a robotic rover around the office](https://youtu.be/lOmT4yWcJrM)
-* [Demo video showing TrailNet generalization to ground vehicles and other environments](https://youtu.be/ZKF5N8xUxfw)
-
-# News
-* **2020-02-03**: Alternative implementations.
-    **redtail** is no longer being developed, but fortunately our community stepped in and continued developing the project.
-    We thank our users for the interest in **redtail**, questions and feedback!
-
-    Some alternative implementations are listed below.
-  
-  * @mtbsteve: https://github.com/mtbsteve/redtail
-
-* **2018-10-10**: Stereo DNN ROS node and fixes.
-  * Added Stereo DNN ROS node and visualizer node.
-  * Fixed issue with nvidia-docker v2.
-* **2018-09-19**: Updates to Stereo DNN.
-  * Moved to TensorRT 4.0
-  * Enabled FP16 support in `ResNet18 2D` model, resulting in 2x performance increase (20fps on Jetson TX2).
-  * Enabled TensorRT serialization in `ResNet18 2D` model to reduce model loading time from minutes to less than a second.
-  * Better logging and profiler support.
-
-* **2018-06-04**: CVPR 2018 workshop. Fast version of Stereo DNN.
-  * Presenting our work at [CVPR 2018](http://cvpr2018.thecvf.com/) conference as a part of [Workshop on Autonomous Driving](http://www.wad.ai/index.html).
-  * Added fast version of Stereo DNN model based on ResNet18 2D model. The model runs at 10fps on Jetson TX2. See [README](../master/stereoDNN/) for details and check out updated [sample_app](../master/stereoDNN/sample_app).
-
-* **GTC 2018**: Here is our [Stereo DNN session page at GTC18](https://2018gputechconf.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=152050) and [the recorded video presentation](http://on-demand.gputechconf.com/gtc/2018/video/S8660/)
-
-* **2018-03-22**: redtail 2.0.
-  * Added Stereo DNN models and inference library (TensorFlow/TensorRT). For more details, see the [README](../master/stereoDNN/).
-  * Migrated to JetPack 3.2. This change brings latest components such as CUDA 9.0, cuDNN 7.0, TensorRT 3.0, OpenCV 3.3 and others to Jetson platform. Note that this is a breaking change.
-  * Added support for INT8 inference. This enables fast inference on devices that have hardware implementation of INT8 instructions. More details are on [our wiki](../../wiki/ROS-Nodes#int8-inference).
-
-* **2018-02-15**: added support for the TBS Discovery platform.
-  * Step by step instructions on how to assemble the [TBS Discovery drone](../../wiki/Skypad-TBS-Discovery-Setup).
-  * Instructions on how to attach and use a [ZED stereo camera](https://www.stereolabs.com/zed/).
-  * Detailed instructions on how to calibrate, test and fly the drone.
-
-* **2017-10-12**: added full simulation Docker image, experimental support for APM Rover and support for MAVROS v0.21+.
-  
-  * Redtail simulation Docker image contains all the components required to run full Redtail simulation in Docker. Refer to [wiki](../../wiki/Testing-in-Simulator) for more information.
-  * Experimental support for APM Rover. Refer to [wiki](../../wiki#platforms) for more information.
-  * Several other changes including support for MAVROS v0.21+, updated Jetson install script and few bug fixes.
-
-* **2017-09-07**: NVIDIA Redtail project is released as an open source project.
-  
-  Redtail's AI modules allow building autonomous drones and mobile robots based on Deep Learning and NVIDIA Jetson TX1 and TX2 embedded systems.
-  Source code, pre-trained models as well as detailed build and test instructions are released on GitHub.
-
-* **2017-07-26**: migrated code and scripts to [JetPack 3.1](https://developer.nvidia.com/embedded/jetpack) with [TensorRT 2.1](https://developer.nvidia.com/tensorrt).
-  
-    TensorRT 2.1 provides significant improvements in DNN inference performance as well as new features and bug fixes. This is a breaking change which requires re-flashing Jetson with JetPack 3.1.
+<div class="Box-sc-g0xbh4-0 bJMeLZ js-snippet-clipboard-copy-unpositioned" data-hpc="true"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">NVIDIA Redtail 项目</font></font></h1><a id="user-content-nvidia-redtail-project" class="anchor" aria-label="永久链接：NVIDIA Redtail 项目" href="#nvidia-redtail-project"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用深度学习的无人机和地面车辆的自主视觉导航组件。</font><font style="vertical-align: inherit;">有关如何开始的更多信息，</font><font style="vertical-align: inherit;">请参阅</font></font><a href="https://github.com/NVIDIA-Jetson/redtail/wiki"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">wiki 。</font></font></a><font style="vertical-align: inherit;"></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该项目包含深度神经网络、计算机视觉和控制代码、硬件指令和其他工件，允许用户构建无人机或地面车辆，它们可以在高度非结构化的环境（如森林步道、人行道等）中自主导航。我们的 TrailNet DNN 用于视觉导航运行在 NVIDIA 的 Jetson 嵌入式平台上。我们的</font></font><a href="https://arxiv.org/abs/1705.02550" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">arXiv 论文</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">详细描述了 TrailNet 和其他运行时模块。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该项目的深度神经网络（DNN）可以使用公开数据从头开始训练。</font><font style="vertical-align: inherit;">作为该项目的一部分，还提供了</font><font style="vertical-align: inherit;">一些</font></font><a href="/NVIDIA-AI-IOT/redtail/blob/master/models/pretrained"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">预先训练的 DNN</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 。如果您想从头开始训练 TrailNet DNN，请按照</font></font><a href="/NVIDIA-AI-IOT/redtail/wiki/Models"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">本页</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上的步骤操作。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该项目还包含</font></font><a href="/NVIDIA-AI-IOT/redtail/blob/master/stereoDNN"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">立体 DNN</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">模型和运行时，可用于估计 NVIDIA 平台上立体相机的深度。</font></font></p>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">IROS 2018</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：我们在</font></font><a href="https://www.iros2018.org/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">IROS 2018</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">会议上展示了我们的工作，作为</font></font><a href="https://www.seas.upenn.edu/~loiannog/workshopIROS2018uav/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">基于视觉的无人机：下一步是什么？</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">作坊。</font></font></p>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CVPR 2018 ：作为</font></font></strong><font style="vertical-align: inherit;"><a href="http://www.wad.ai/index.html" rel="nofollow"><font style="vertical-align: inherit;">自动驾驶研讨会</font></a><font style="vertical-align: inherit;">的一部分，</font><font style="vertical-align: inherit;">我们在</font></font><a href="http://cvpr2018.thecvf.com/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CVPR 2018</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">会议上展示了我们的工作。</font></font><a href="http://www.wad.ai/index.html" rel="nofollow"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">参考和演示</font></font></h2><a id="user-content-references-and-demos" class="anchor" aria-label="永久链接：参考和演示" href="#references-and-demos"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><a href="https://arxiv.org/abs/1803.09719" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">立体 DNN、CVPR18 论文</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><a href="https://youtu.be/0FPQdVOYoAU" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">立体 DNN 视频演示</font></font></a></li>
+<li><a href="https://arxiv.org/abs/1705.02550" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">TrailNet 森林无人机导航、IROS17 论文</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><a href="https://youtu.be/H7Ym3DMSGms" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">TrailNet DNN 视频演示</font></font></a></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GTC 2017 演讲：</font></font><a href="http://on-demand.gputechconf.com/gtc/2017/presentation/s7172-nikolai-smolyanskiy-autonomous-drone-navigation-with-deep-learning.pdf" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">幻灯片</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><a href="http://on-demand.gputechconf.com/gtc/2017/video/s7172-smolyanskiy-autonomous-drone-navigation-with-deep-learning%20(1).PNG.mp4" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">视频</font></font></a></li>
+<li><a href="https://youtu.be/H7Ym3DMSGms" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">演示视频显示使用 TrailNet DNN 驾驶无人机进行 250m 自主飞行</font></font></a></li>
+<li><a href="https://youtu.be/USYlt9t0lZY" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">演示视频展示了我们使用 TrailNet DNN 进行的 1 公里自主无人机飞行</font></font></a></li>
+<li><a href="https://youtu.be/lOmT4yWcJrM" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">演示视频显示 TrailNet DNN 在办公室周围驾驶机器人漫游车</font></font></a></li>
+<li><a href="https://youtu.be/ZKF5N8xUxfw" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">演示视频展示了 TrailNet 对地面车辆和其他环境的推广</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">消息</font></font></h1><a id="user-content-news" class="anchor" aria-label="永久链接：新闻" href="#news"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2020-02-03</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：替代实施。
+ </font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">redtail</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">不再被开发，但幸运的是我们的社区介入并继续开发该项目。我们感谢用户对</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">redtail</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">的兴趣</font><font style="vertical-align: inherit;">、问题和反馈！</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下面列出了一些替代实现。</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@mtbsteve：</font></font><a href="https://github.com/mtbsteve/redtail"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://github.com/mtbsteve/redtail</font></font></a></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2018-10-10</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：立体 DNN ROS 节点和修复。</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">添加了 Stereo DNN ROS 节点和可视化器节点。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">修复了 nvidia-docker v2 的问题。</font></font></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2018-09-19</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：立体 DNN 更新。</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">移至 TensorRT 4.0</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在模型中启用 FP16 支持</font></font><code>ResNet18 2D</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，导致性能提高 2 倍（Jetson TX2 上为 20fps）。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在模型中启用 TensorRT 序列化</font></font><code>ResNet18 2D</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，将模型加载时间从几分钟缩短到不到一秒。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">更好的日志记录和分析器支持。</font></font></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2018-06-04</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> : CVPR 2018 研讨会。立体 DNN 的快速版本。</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><a href="http://www.wad.ai/index.html" rel="nofollow"><font style="vertical-align: inherit;">作为自动驾驶研讨会</font></a><font style="vertical-align: inherit;">的一部分，在</font></font><a href="http://cvpr2018.thecvf.com/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CVPR 2018</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">会议上展示我们的工作</font><font style="vertical-align: inherit;">。</font></font><a href="http://www.wad.ai/index.html" rel="nofollow"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">基于ResNet18 2D模型添加了快速版本的Stereo DNN模型。该模型在 Jetson TX2 上以 10fps 的速度运行。有关详细信息，</font><font style="vertical-align: inherit;">请参阅</font></font><a href="/NVIDIA-AI-IOT/redtail/blob/master/stereoDNN"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">README</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">并查看更新的</font></font><a href="/NVIDIA-AI-IOT/redtail/blob/master/stereoDNN/sample_app"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sample_app</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GTC 2018</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：这是我们</font></font><a href="https://2018gputechconf.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=152050" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 GTC18 上的 Stereo DNN 会议页面</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以及</font></font><a href="http://on-demand.gputechconf.com/gtc/2018/video/S8660/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">录制的视频演示</font></font></a></p>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2018-03-22</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：红尾2.0。</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">添加了立体 DNN 模型和推理库 (TensorFlow/TensorRT)。有关更多详细信息，请参阅</font></font><a href="/NVIDIA-AI-IOT/redtail/blob/master/stereoDNN"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">自述文件</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">迁移到 JetPack 3.2。此更改为 Jetson 平台带来了 CUDA 9.0、cuDNN 7.0、TensorRT 3.0、OpenCV 3.3 等最新组件。请注意，这是一个重大更改。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">添加了对 INT8 推理的支持。这使得能够在具有 INT8 指令硬件实现的设备上进行快速推理。更多详细信息请参见</font></font><a href="/NVIDIA-AI-IOT/redtail/wiki/ROS-Nodes#int8-inference"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们的 wiki</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2018-02-15</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：添加了对 TBS Discovery 平台的支持。</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">有关如何组装</font></font><a href="/NVIDIA-AI-IOT/redtail/wiki/Skypad-TBS-Discovery-Setup"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">TBS Discovery 无人机的</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分步说明。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">有关如何连接和使用</font></font><a href="https://www.stereolabs.com/zed/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ZED 立体相机的</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">说明。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">有关如何校准、测试和飞行无人机的详细说明。</font></font></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2017-10-12</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：添加了完整模拟 Docker 镜像、对 APM Rover 的实验性支持以及对 MAVROS v0.21+ 的支持。</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Redtail 模拟 Docker 镜像包含在 Docker 中运行完整 Redtail 模拟所需的所有组件。请参阅</font></font><a href="/NVIDIA-AI-IOT/redtail/wiki/Testing-in-Simulator"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">维基百科</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">了解更多信息。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">对 APM Rover 的实验支持。请参阅</font></font><a href="/NVIDIA-AI-IOT/redtail/wiki#platforms"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">维基百科</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">了解更多信息。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">其他一些更改包括对 MAVROS v0.21+ 的支持、更新的 Jetson 安装脚本和一些错误修复。</font></font></li>
+</ul>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2017-09-07</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> : NVIDIA Redtail 项目作为开源项目发布。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Redtail 的 AI 模块允许构建基于深度学习和 NVIDIA Jetson TX1 和 TX2 嵌入式系统的自主无人机和移动机器人。源代码、预训练模型以及详细的构建和测试说明均在 GitHub 上发布。</font></font></p>
+</li>
+<li>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2017-07-26</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ：使用</font><a href="https://developer.nvidia.com/tensorrt" rel="nofollow"><font style="vertical-align: inherit;">TensorRT 2.1</font></a><font style="vertical-align: inherit;">将代码和脚本迁移到</font></font><a href="https://developer.nvidia.com/embedded/jetpack" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">JetPack 3.1</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font><a href="https://developer.nvidia.com/tensorrt" rel="nofollow"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">TensorRT 2.1 显着改进了 DNN 推理性能以及新功能和错误修复。这是一个重大更改，需要使用 JetPack 3.1 重新刷新 Jetson。</font></font></p>
+</li>
+</ul>
+</article></div>
